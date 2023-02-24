@@ -1,0 +1,3 @@
+module GetInput
+
+end
