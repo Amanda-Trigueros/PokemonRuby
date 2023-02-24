@@ -1,7 +1,10 @@
 class Battle
   # (complete parameters)
-  def initialize
-    # Complete this
+  def initialize(player, bot)
+    @player = player
+    @bot = bot
+    @player_pokemon = @player_pokemon
+    @bot_char = @bot. character
   end
 
   def start

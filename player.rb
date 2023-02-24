@@ -1,9 +1,10 @@
 # require neccesary files
 
 class Player
-  # (Complete parameters)
-  def initialize
-    # Complete this
+  include GetInput
+  def initialize(name, pokemon_player, pokemon_name)
+    @player = name
+    @pokemon = Pokemon.new(pokemon_player, pokemon_name)
   end
 
   def select_move
