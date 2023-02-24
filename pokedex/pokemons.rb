@@ -2,6 +2,7 @@ module Pokedex
   POKEMONS = {
     "Bulbasaur" => {
       species: "Bulbasaur",
+      user: "player",
       type: %i[grass poison],
       base_exp: 64,
       effort_points: { type: :special_attack, amount: 1 },
@@ -11,6 +12,7 @@ module Pokedex
     },
     "Charmander" => {
       species: "Charmander",
+      user: "player",
       type: %i[fire],
       base_exp: 62,
       effort_points: { type: :speed, amount: 1 },
@@ -20,6 +22,7 @@ module Pokedex
     },
     "Squirtle" => {
       species: "Squirtle",
+      user: "player",
       type: %i[water],
       base_exp: 63,
       effort_points: { type: :defense, amount: 1 },
@@ -29,6 +32,7 @@ module Pokedex
     },
     "Ratata" => {
       species: "Ratata",
+      user: "random",
       type: %i[normal],
       base_exp: 51,
       effort_points: { type: :speed, amount: 1 },
@@ -38,6 +42,7 @@ module Pokedex
     },
     "Spearow" => {
       species: "Spearow",
+      user: "random",
       type: %i[normal flying],
       base_exp: 52,
       effort_points: { type: :speed, amount: 1 },
@@ -47,6 +52,7 @@ module Pokedex
     },
     "Pikachu" => {
       species: "Pikachu",
+      user: "random",
       type: %i[electric],
       base_exp: 112,
       effort_points: { type: :speed, amount: 2 },
@@ -56,6 +62,7 @@ module Pokedex
     },
     "Onix" => {
       species: "Onix",
+      user: "random",
       type: %i[rock ground],
       base_exp: 77,
       effort_points: { type: :defense, amount: 1 },

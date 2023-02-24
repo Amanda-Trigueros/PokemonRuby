@@ -1,17 +1,19 @@
+require_relative "game"
+
 module GetInput
   def print_options(options)
     options.each.with_index do |option, index|
-      puts "#{index + 1}. #{option.capitalize}"
+      print "#{index + 1}. #{option} "
     end
   end
 
   def get_with_options(prompt, options)
     input = ""
-    until options.include?(input.downcase)
+    until options.include?(input)
       puts prompt
       print_options(options)
-      print "> "
-      input = gets.chomp.downcase
+      print "\n > "
+      input = gets.chomp
     end
 
     input
@@ -24,7 +26,17 @@ module GetInput
       print "> "
       input = gets.chomp
     end
-
     input
+  end
+
+  def get_input_pokemon_name(prompt)
+    input = "" 
+    if input.empty?
+      puts pokemon_player
+    else
+      puts prompt
+      print "> "
+      input = gets.chomp
+    end
   end
 end
