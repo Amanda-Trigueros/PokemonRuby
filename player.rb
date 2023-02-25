@@ -1,4 +1,6 @@
 # require neccesary files
+require_relative "game"
+require_relative "get_input"
 
 class Player
   include GetInput
