@@ -1,6 +1,7 @@
 require_relative "get_input"
 require_relative "player"
 require_relative "pokedex/pokemons"
+require_relative "stats"
 
 class Game
   include GetInput
@@ -39,14 +40,14 @@ class Game
 
     pokemon_player = select_pokemon.downcase
     puts "\nYou selected #{pokemon_player.upcase}. Great choice!"
-    pokemon_name = get_input_pokemon_name("Give your pokemon a name:")
+    pokemon_name = get_input("Give your pokemon a name:")
 
     puts "#{name.upcase}, raise your young #{pokemon_name.upcase} by making it fight!"
     puts "When you feel ready you can challenge BROCK, the PEWTER's GYM LEADER"
     
     puts "#{'-' * 30} Menu #{'-' * 30}"
     puts "\n 1.Stats         2.Train         3.Leader         4.Exit"
-    puts ">  " 
+    print ">  " 
     gets.chomp.strip.downcase
     
 
@@ -57,35 +58,29 @@ class Game
   end
 
   private
-
  
-
- ##
-  # 
-  #   action = nil
-  #   while action != "Exit"
-  #    action = menu
-#
-  #     case action
-  #     when "Train"
-  #      puts "train"
-  #     when "Leader"
-  #       puts "challenge_leader"
-  #     when "Stats"
-  #       puts "show_stats"
-  #     when "Exit"
-  #      puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge, Odilón, Wilder and Amanda"
-  #      break 
-  #     else 
-  #      puts "Invalid action"
-  #     end
-  #   end
-     
-#   end
-
-#   def train
-#     # Complete this
-#   end
+#action = nil
+#   while action != "Exit"
+  action = "menu"
+     case action
+     when "Train"
+      puts "train"
+     when "Leader"
+       puts "challenge_leader"
+     when "Stats"
+       show_stats
+     when "Exit"
+      puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge, Odilón, Wilder and Amanda"
+      #break 
+     else 
+      puts "Invalid action"
+     end
+   #end
+  
+ #end
+  # def train
+     # Complete this
+   #end
 
 #   def challenge_leader
 #     # Complete this

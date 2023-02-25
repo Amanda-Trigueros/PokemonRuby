@@ -30,13 +30,11 @@ module GetInput
   end
 
   def get_input_pokemon_name(prompt)
-    input = "" 
+    print "> "
+    input = gets.chomp
     if input.empty?
-      puts pokemon_player
-    else
-      puts prompt
-      print "> "
-      input = gets.chomp
+      pokemon_player
+      return
     end
   end
 end
