@@ -1,13 +1,13 @@
-require_relative "game"
+# require neccesary files
+require_relative "games"
 require_relative "modules/pokedex"
 
 class Pokemon
   # include neccesary modules
 
   # (complete parameters)
-  def initialize(pokemon_player)
-
-    @kind = poke_details[:species]
+  def initialize
+    @kind = [:species]
     @level = 1
     @type = [:type]
     @hp = [:base_stats][:hp]
@@ -17,7 +17,6 @@ class Pokemon
     @special_defense = [:base_stats][:special_defense]
     @speed = [:base_stats][:speed]
     @experience = 0
-
     # Retrieve pokemon info from Pokedex and set instance variables
     # Calculate Individual Values and store them in instance variable
     # Create instance variable with effort values. All set to 0
