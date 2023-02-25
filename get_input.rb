@@ -1,4 +1,4 @@
-require_relative "game"
+
 
 module GetInput
   def print_options(options)

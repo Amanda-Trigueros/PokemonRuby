@@ -1,12 +1,11 @@
-# require neccesary files
-require_relative "game"
-require_relative "get_input"
+require_relative "pokemon"
 
 class Player
-  include GetInput
+  attr_reader :player, :pokemon
   def initialize(name, pokemon_player, pokemon_name)
     @player = name
     @pokemon = Pokemon.new(pokemon_player, pokemon_name)
+    
   end
 
   def select_move
@@ -15,3 +14,7 @@ class Player
 end
 
 # Create a class Bot that inherits from Player and override the select_move method
+
+# rety = Player.new("Amanda", "Charmander", "Benja")
+# p rety.player
+# p rety.pokemon.grey

@@ -1,22 +1,27 @@
-# require neccesary files
-require_relative "games"
-require_relative "modules/pokedex"
+
+require_relative "pokedex/pokemons"
+
 
 class Pokemon
-  # include neccesary modules
 
+attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
   # (complete parameters)
-  def initialize
-    @kind = [:species]
-    @level = 1
-    @type = [:type]
-    @hp = [:base_stats][:hp]
-    @attack = [:base_stats][:attack]
-    @defense =[:base_stats][:defense]
-    @special_attack = [:base_stats][:special_attack]
-    @special_defense = [:base_stats][:special_defense]
-    @speed = [:base_stats][:speed]
-    @experience = 0
+  def initialize(pokemon_player, pokemon_name)
+    my_hash = Pokedex::POKEMONS[pokemon_player] #impresion hash
+
+    @grey = my_hash[:base_stats]
+    @pokemon_name = pokemon_name
+    @species = my_hash[:species]
+    @level = rand(1..5)
+    @type = my_hash[:type]
+    # @hp = stats[:base_stats][:hp]
+    # @attack = stats[:base_stats][:attack]
+    # @defense = stats[:base_stats][:defense]
+    # @special_attack = stats[:base_stats][:special_attack]
+    # @special_defense = stats[:base_stats][:special_defense]
+    # @speed = stats[:base_stats][:speed]
+    # @experience = 0
+
     # Retrieve pokemon info from Pokedex and set instance variables
     # Calculate Individual Values and store them in instance variable
     # Create instance variable with effort values. All set to 0
@@ -68,3 +73,6 @@ class Pokemon
   # private methods:
   # Create here auxiliary methods
 end
+
+# testino = Pokemon.new("Charmander", "Jose Luis")
+# p testino.grey

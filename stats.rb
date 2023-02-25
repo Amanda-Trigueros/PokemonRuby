@@ -1,7 +1,8 @@
 require_relative "pokedex/pokemons"
-require_relative "game"
 
-stats = Pokedex::POKEMONS["Bulbasaur"]
+module Statistics
+
+stats = Pokedex::POKEMONS[pokemon_player]
 
 def show_stats
   name = pokemon_name
@@ -31,3 +32,4 @@ def show_stats
   puts "Experience Points: #{experience}" 
 end
 
+end

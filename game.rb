@@ -1,7 +1,7 @@
 require_relative "get_input"
 require_relative "player"
 require_relative "pokedex/pokemons"
-require_relative "stats"
+
 
 class Game
   include GetInput
@@ -32,46 +32,47 @@ class Game
     When I was young, I was a serious POKEMON trainer.
     In my old age, I have only 3 left, but you can have one!\n\n"
 
+    def select_pokemon
+      pokemons = Pokedex::POKEMONS.select { |_key, value| value[:user] == "player" }
+      valid_pokemons = pokemons.keys
+      get_with_options("Choose:", valid_pokemons)
+    end
 
-
-    pokemon_player = select_pokemon.downcase
+    pokemon_player = select_pokemon.capitalize
     puts "\nYou selected #{pokemon_player.upcase}. Great choice!"
     pokemon_name = get_input("Give your pokemon a name:")
+    @player = Player.new(name, pokemon_player, pokemon_name)
+    #bot = Bot.new
+   
 
     puts "#{name.upcase}, raise your young #{pokemon_name.upcase} by making it fight!"
     puts "When you feel ready you can challenge BROCK, the PEWTER's GYM LEADER"
 
+
+
     puts "#{'-' * 30} Menu #{'-' * 30}"
     puts "\n 1.Stats         2.Train         3.Leader         4.Exit"
     print ">  " 
-    gets.chomp.strip.downcase
     
-
-
-    player = Player.new(name, pokemon_player, pokemon_name)
-    #bot = Bot.new
-    
+    action = nil
+    while action != "Exit"
+      action = gets.chomp.strip
+          case action
+          when "Train"
+          puts "train"
+          when "Leader"
+            puts "challenge_leader"
+          when "Stats"
+            show_stats
+          when "Exit"
+          puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge, Odilón, Wilder and Amanda"
+          #break 
+          else 
+          puts "Invalid action"
+          end
+        end
   end
 
-  private
- 
-#action = nil
-#   while action != "Exit"
-  action = "menu"
-     case action
-     when "Train"
-      puts "train"
-     when "Leader"
-       puts "challenge_leader"
-     when "Stats"
-       show_stats
-     when "Exit"
-      puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge, Odilón, Wilder and Amanda"
-      #break 
-     else 
-      puts "Invalid action"
-     end
-   #end
   
  #end
   # def train
@@ -82,9 +83,19 @@ class Game
 #     # Complete this
 #   end
 
-#   def show_stats
-#     # 
-#   end
+  def show_stats
+    puts "#{@player.pokemon.pokemon_name}: "
+    puts "Kind: #{@player.pokemon.species}"
+    puts "Level: #{@player.pokemon.level}"
+    puts "Type: #{@player.pokemon.type.join(" ")}" 
+    puts "Stats: "
+    @player.pokemon.grey. each do |key, value|
+      puts "#{key.capitalize}: #{value}"
+    end
+
+   
+    # puts "Experience Points: #{experience}" 
+  end
 
 #   def goodbye
 #     # Complete this
@@ -96,8 +107,6 @@ class Game
 end
 
 
-game = Game.new
-game.start
 
 
 
