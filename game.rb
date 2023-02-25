@@ -31,11 +31,7 @@ class Game
     When I was young, I was a serious POKEMON trainer.
     In my old age, I have only 3 left, but you can have one!\n\n"
 
-    def select_pokemon
-      pokemons = Pokedex::POKEMONS.select { |_key, value| value[:user] == "player" }
-      valid_pokemons = pokemons.keys
-      get_with_options("Choose:", valid_pokemons)
-    end
+
 
     pokemon_player = select_pokemon.downcase
     puts "\nYou selected #{pokemon_player.upcase}. Great choice!"
@@ -58,7 +54,11 @@ class Game
 
   private
 
- 
+  def select_pokemon
+    pokemons = Pokedex::POKEMONS.select { |_key, value| value[:user] == "player" }
+    valid_pokemons = pokemons.keys
+    get_with_options("Choose:", valid_pokemons)
+  end
 
  ##
   # 
@@ -92,7 +92,7 @@ class Game
 #   end
 
 #   def show_stats
-#     # Complete this
+#     # 
 #   end
 
 #   def goodbye
