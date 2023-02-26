@@ -1,10 +1,10 @@
-
 require_relative "pokedex/pokemons"
 
 
 class Pokemon
+attr_reader :grey, :pokemon_name, :species, :level, :type, :grey, :moves, :speed, :base_exp
+attr_accessor :current_move, :experience
 
-attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
   # (complete parameters)
   def initialize(pokemon_player, pokemon_name)
     my_hash = Pokedex::POKEMONS[pokemon_player] #impresion hash
@@ -14,13 +14,13 @@ attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
     @species = my_hash[:species]
     @level = rand(1..5)
     @type = my_hash[:type]
-    # @hp = stats[:base_stats][:hp]
-    # @attack = stats[:base_stats][:attack]
-    # @defense = stats[:base_stats][:defense]
-    # @special_attack = stats[:base_stats][:special_attack]
-    # @special_defense = stats[:base_stats][:special_defense]
-    # @speed = stats[:base_stats][:speed]
-    # @experience = 0
+    @experience = 0
+    @hp = my_hash[:base_stats][:hp]
+    @moves = my_hash[:moves]
+    @speed = my_hash[:base_stats][:speed]
+    @health = nil
+    @current_move = nil
+  
 
     # Retrieve pokemon info from Pokedex and set instance variables
     # Calculate Individual Values and store them in instance variable
@@ -32,22 +32,49 @@ attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
   end
 
   def prepare_for_battle
-    # Complete this
+    @health = @hp
+    @current_move = nil
   end
 
-  def receive_damage
-    # Complete this
+  def receive_damage(damage)
+    @health -= damage
   end
+  
+  def update_ex
+    (@base_experience * @level / 7.0).floor
+  end 
 
   def set_current_move
     # Complete this
   end
 
   def fainted?
-    # Complete this
+    !@health.positive?
   end
 
   def attack(target)
+
+    hit = @current_move[:accuracy] >= rand(1..100)
+    damage = @current_move[:power]
+      
+    if hit
+      puts "#{@pokemon_name} used #{@current_move[:name].upcase}"
+      target.receive_damage(damage)
+      puts "And it hit #{target.pokemon_name} with #{damage} damage"
+    else
+      puts "It's not very efective"
+      puts "It hit #{target.pokemon_name} with #{damage} damage"
+    end 
+  end
+end
+
+
+
+
+
+
+
+
     # Print attack message 'Tortuguita used MOVE!'
     # Accuracy check
     # If the movement is not missed
@@ -61,7 +88,7 @@ attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
     # ---- "It doesn't affect [target name]!" when effectivenes is 0
     # -- Inflict damage to target and print message "And it hit [target name] with [damage] damage""
     # Else, print "But it MISSED!"
-  end
+  
 
   def increase_stats(target)
     # Increase stats base on the defeated pokemon and print message "#[pokemon name] gained [amount] experience points"
@@ -72,7 +99,6 @@ attr_reader :grey, :pokemon_name, :species, :level, :type, :grey
 
   # private methods:
   # Create here auxiliary methods
-end
 
-# testino = Pokemon.new("Charmander", "Jose Luis")
-# p testino.grey
+#testino = Pokemon.new("Charmander", "Jose Luis")
+#p testino

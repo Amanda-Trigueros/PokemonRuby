@@ -39,7 +39,7 @@ class Game
     end
 
     pokemon_player = select_pokemon.capitalize
-    puts "\nYou selected #{pokemon_player.upcase}. Great choice!"
+    puts "\n You selected #{pokemon_player.upcase}. Great choice!"
     pokemon_name = get_input("Give your pokemon a name:")
     @player = Player.new(name, pokemon_player, pokemon_name)
     #bot = Bot.new
@@ -48,27 +48,27 @@ class Game
     puts "#{name.upcase}, raise your young #{pokemon_name.upcase} by making it fight!"
     puts "When you feel ready you can challenge BROCK, the PEWTER's GYM LEADER"
 
-
-
-    puts "#{'-' * 30} Menu #{'-' * 30}"
-    puts "\n 1.Stats         2.Train         3.Leader         4.Exit"
-    print ">  " 
-    
     action = nil
+    #p action
     while action != "Exit"
-      action = gets.chomp.strip
+      action = menu
           case action
           when "Train"
           puts "train"
+         # action = menu
           when "Leader"
             puts "challenge_leader"
+         # action = menu
           when "Stats"
             show_stats
+         # action = menu
           when "Exit"
-          puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge, Odilón, Wilder and Amanda"
+          puts "Thanks for playing Pokemon Ruby. This game was creater with love by: Jorge and Amanda"
+          #action = menu
           #break 
           else 
           puts "Invalid action"
+          #action = menu
           end
         end
   end
@@ -101,9 +101,13 @@ class Game
 #     # Complete this
 #   end
 
-#   def menu
-#     # Complete this
-#   end
+   def menu
+    puts "#{'-' * 30} Menu #{'-' * 30}"
+    puts "\n 1.Stats         2.Train         3.Leader         4.Exit"
+    print ">  " 
+    x = gets.chomp.strip
+    x
+   end
 end
 
 
